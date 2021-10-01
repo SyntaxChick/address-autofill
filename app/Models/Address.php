@@ -13,13 +13,5 @@ class Address extends Model
    {
        return 'address-autofill';
    }
-
-   public function toSearchableArray()
-   {
-       $array = $this->toArray();
-
-       // Customize the data array...
-
-       return $array;
-   }
+   
 }

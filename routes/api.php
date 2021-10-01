@@ -24,10 +24,14 @@ Route::get('autofill', function(Request $request){
 
     if(!isset($request->l))
     {
-        return json_encode($response['hits']);
+        return response(json_encode($response['hits']))
+                    ->header('Content-Type', 'application/json');
     }
 
-    return json_encode(array_slice($response['hits'], 0, $request->l));
+    $resultSet = json_encode(array_slice($response['hits'], 0, $request->l));
+    
+    return response($resultSet)
+                ->header('Content-Type', 'application/json');
 
     
 });
