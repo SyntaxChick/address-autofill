@@ -20,5 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 Route::get('autofill', function(Request $request){
-    return Address::search($request->q)->raw();
+    $response = Address::search($request->q)->raw();
+
+    if(!isset($request->l))
+    {
+        return json_encode($response['hits']);
+    }
+
+    return json_encode(array_slice($response['hits'], 0, $request->l));
+
+    
 });
